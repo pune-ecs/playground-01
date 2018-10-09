@@ -16,10 +16,10 @@ pipeline {
 	   }
 	} */
         stage('Build') {
-//	    agent {dockerfile true} 
-	    agent {
+	    agent {dockerfile true} 
+	   /* agent {
  		 label 'docker'
-	    }
+	    }*/
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
