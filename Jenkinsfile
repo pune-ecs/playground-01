@@ -1,5 +1,5 @@
 pipeline { 
-    agent any 
+    agent docker 
     // parameters {
    //	 string(name: releasedVersion, defaultValue: '')
    // }  
@@ -16,14 +16,14 @@ pipeline {
 	   }
 	} */
         stage('Build') {
-	    agent {dockerfile true} 
+	    //agent {dockerfile true} 
 	   /* agent {
  		 label 'docker'
 	    }*/
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
-	       //sh "docker build -t ${JOB_NAME}:SNAPSHOT ." 
+	       docker build -t ${JOB_NAME}:SNAPSHOT .
 		/*script{
 			def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
 		}*/
