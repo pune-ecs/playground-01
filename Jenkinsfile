@@ -4,17 +4,24 @@ pipeline {
    //	 string(name: releasedVersion, defaultValue: '')
    // }  
     //def releasedVersion = 1.1
+    tools {
+        maven 'Maven 3'
+        docker 'docker'
+    }
     stages {
-	stage('Prepare'){
+	/*stage('Prepare'){
 	   steps {
 	     echo 'Checkout SCM'
 	     checkout scm
 	   }
-	} 
+	} */
         stage('Build') { 
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
+		script{
+			def snapshot-image = docker.build("${JOB_NAME:SNAPSHOT}")
+		}
             }
         }
         stage('Release') {
