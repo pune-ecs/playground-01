@@ -1,5 +1,7 @@
 pipeline { 
-    agent docker 
+    agent {
+	labels docker
+	} 
     // parameters {
    //	 string(name: releasedVersion, defaultValue: '')
    // }  
