@@ -5,7 +5,7 @@
     <groupId>org.springframework</groupId>
     <artifactId>hello-world</artifactId>
     <packaging>jar</packaging>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.6-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
