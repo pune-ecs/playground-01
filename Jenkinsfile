@@ -1,8 +1,8 @@
 pipeline { 
     agent any
-     parameters {
-   	 string(name: releasedVersion, defaultValue: '')
-    }  
+    // parameters {
+   //	 string(name: releasedVersion, defaultValue: '')
+   // }  
     //def releasedVersion = 1.1
     stages {
 	stage('Prepare'){
