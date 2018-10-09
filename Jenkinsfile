@@ -15,13 +15,14 @@ pipeline {
 	     checkout scm
 	   }
 	} */
-        stage('Build') { 
+        stage('Build') {
+	    agent {dockerfile true} 
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
-		script{
+		/*script{
 			def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
-		}
+		}*/
             }
         }
         stage('Release') {
