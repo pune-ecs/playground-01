@@ -3,7 +3,7 @@ pipeline {
      parameters {
    	 string(name: releasedVersion, defaultValue: '')
     }  
-    #def releasedVersion = 1.1
+    //def releasedVersion = 1.1
     stages {
 	stage('Prepare'){
 	   steps {
