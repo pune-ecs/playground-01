@@ -1,7 +1,7 @@
 pipeline { 
     agent any
      parameters {
-   	 string(name: VERSION, defaultValue: '')
+   	 string(name: releasedVersion, defaultValue: '')
     }  
     def releasedVersion = 1.1
     stages {
