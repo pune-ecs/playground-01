@@ -13,7 +13,7 @@ pipeline {
 	       sh 'mvn clean package'
             }
         }
-        stage('Build') {
+        stage('Release') {
             steps {
                echo 'This is a minimal pipeline.'
 		releasedVersion = 1.1
