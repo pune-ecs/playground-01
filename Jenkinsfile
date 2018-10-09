@@ -20,7 +20,7 @@ pipeline {
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
 		script{
-			def snapshot-image = docker.build("${JOB_NAME:SNAPSHOT}")
+			def snapshotImage = docker.build("${JOB_NAME:SNAPSHOT}")
 		}
             }
         }
