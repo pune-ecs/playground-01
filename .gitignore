@@ -1,10 +1,8 @@
-#*/target/**
-#.classpath
-#.project
-#.settings/
-#dependency-reduced-pom.xml
-#release.properties
-#target/
+**/*.iml
+**/.idea/
+
+**/target/
+**/build/
 
 /*
 !src/*
