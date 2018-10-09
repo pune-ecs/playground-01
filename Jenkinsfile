@@ -1,5 +1,8 @@
 pipeline { 
-    agent any  
+    agent any
+     parameters {
+   	 string(name: VERSION, defaultValue: '')
+    }  
     def releasedVersion = 1.1
     stages {
 	stage('Prepare'){

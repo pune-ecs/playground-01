@@ -3,6 +3,7 @@
 
 **/target/
 **/build/
+**/*.sh
 dependency-reduced-pom.xml
 #/*
 #!/src
