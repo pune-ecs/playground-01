@@ -5,7 +5,7 @@
     <groupId>org.springframework</groupId>
     <artifactId>java-tomcat-maven-example</artifactId>
     <packaging>war</packaging>
-    <version>1.8</version>
+    <version>1.9-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -13,7 +13,7 @@
     </properties>
     <scm>
         <developerConnection>scm:git:https://github.com/abha10/demo-002.git</developerConnection>
-        <tag>1.8</tag>
+        <tag>HEAD</tag>
     </scm>
     <build>
 	<finalName>java-tomcat-maven-example</finalName>
