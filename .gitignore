@@ -1,0 +1,13 @@
+**/*.iml
+**/.idea/
+
+**/target/
+**/build/
+
+#/*
+#!/src
+#!pom.xml
+#!README.md
+#!/resources
+
+
