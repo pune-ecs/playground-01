@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>hello-world</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>java-tomcat-maven-example</artifactId>
+    <packaging>war</packaging>
     <version>1.8-SNAPSHOT</version>
 
     <properties>
