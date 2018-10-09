@@ -6,7 +6,7 @@ pipeline {
     //def releasedVersion = 1.1
     tools {
         maven 'Maven 3'
-        docker 'docker'
+    //    docker 'docker'
     }
     stages {
 	/*stage('Prepare'){
