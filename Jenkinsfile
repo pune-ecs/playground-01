@@ -4,7 +4,7 @@ pipeline {
 	stage('Prepare'){
 	   steps {
 	     echo 'Checkout SCM'
-	     checkout	
+	     checkout scm
 	   }
 	} 
         stage('Build') { 
