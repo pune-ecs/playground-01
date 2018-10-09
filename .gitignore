@@ -5,10 +5,5 @@
 **/build/
 **/*.sh
 dependency-reduced-pom.xml
-#/*
-#!/src
-#!pom.xml
-#!README.md
-#!/resources
-
+git.sh
 
