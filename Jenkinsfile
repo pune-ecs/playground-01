@@ -24,7 +24,7 @@ pipeline {
 		}
             }
             steps {
-               // sh 'node --version'
+                sh 'echo version'
             }
 	}	
         stage('Release') {
