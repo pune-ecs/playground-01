@@ -2,35 +2,31 @@ pipeline {
     agent {
  	 label 'docker'
 	} 
-    // parameters {
-   //	 string(name: releasedVersion, defaultValue: '')
-   // }  
-    //def releasedVersion = 1.1
     tools {
         maven 'Maven 3'
-    //    docker 'docker'
     }
     stages {
-	/*stage('Prepare'){
-	   steps {
-	     echo 'Checkout SCM'
-	     checkout scm
-	   }
-	} */
         stage('Build') {
-	    //agent {dockerfile true} 
-	   /* agent {
- 		 label 'docker'
-	    }*/
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
-	       //docker build -t JOB_NAME:SNAPSHOT .
 		script{
 			def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
 		}
             }
         }
+	stage('Deploy & Test'){
+	   agent {
+                docker {
+			args '-p 9999:9999' 
+			image "${JOB_NAME}:${env.BUILD_ID}" 
+			label "${JOB_NAME}:${env.BUILD_ID}"
+		}
+            }
+            steps {
+               // sh 'node --version'
+            }
+	}	
         stage('Release') {
             steps {
                echo 'This is a minimal pipeline.'
