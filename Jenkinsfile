@@ -18,9 +18,9 @@ pipeline {
 	stage('Deploy & Test'){
 	   agent {
                 docker {
-			args '-p 9999:9999' 
+			args "-p 9999:9999 -t ${JOB_NAME}:${env.BUILD_ID}" 
 			image "${JOB_NAME}:${env.BUILD_ID}" 
-			label "${JOB_NAME}:${env.BUILD_ID}"
+			//label "${JOB_NAME}:${env.BUILD_ID}"
 		}
             }
             steps {
