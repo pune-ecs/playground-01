@@ -1,7 +1,5 @@
-FROM java:8-jre
-
-COPY target/hello-world-1.6-SNAPSHOT.jar /opt
-
-EXPOSE 9000
-
-CMD ["java", "-jar", "hello-world-1.6-SNAPSHOT.jar"]
+FROM tomcat:8.0
+MAINTAINER Abhaya Ghatkar
+EXPOSE 8080
+RUN rm -fr /usr/local/tomcat/webapps/ROOT
+COPY target/java-tomcat-maven-example.war /usr/local/tomcat/webapps/
