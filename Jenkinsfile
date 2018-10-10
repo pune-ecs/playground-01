@@ -23,7 +23,9 @@ pipeline {
             steps {
                echo 'This is a minimal pipeline.'
                sh 'mvn clean package'
-               docker.build("${JOB_NAME}:${env.BUILD_ID}")
+                script{
+                  def snap_image =  docker.build("${JOB_NAME}:${env.BUILD_ID}")
+                }
 
             }
         }
