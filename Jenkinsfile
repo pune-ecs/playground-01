@@ -30,8 +30,8 @@ pipeline {
         stage('Release') {
             steps {
                echo 'This is a minimal pipeline.'
-          withCredentials([usernamePassword(credentialsId: 'github-cred', passwordVariable: 'password', usernameVariable: 'username')]) {
-              sh "git config user.email ghatkar.abhaya@gmail.com && git config user.name Jenkins"
+          withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
+              sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
               sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
           }
             }
