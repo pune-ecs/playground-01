@@ -59,9 +59,13 @@ pipeline {
                 expression { params.RELEASE }
             }
             steps {
-                
-                    sh "mvn -B release:prepare"
-                    sh "mvn -B release:perform"
+                script{
+                    withMaven(maven: 'Maven 3'){
+                        withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')])
+                             sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
+                             sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
+                    }
+                }
                 
             }
                /* steps{
