@@ -23,31 +23,16 @@ pipeline {
             steps {
                echo 'This is a minimal pipeline.'
                sh 'mvn clean package'
-               /*docker {
-                  args '-p 9000:9000 --name snapshot'
-                   image '${JOB_NAME}:SNAPSHOT'
-                }*/
-               /* script{
-                    app = docker.build("${JOB_NAME}:SNAPSHOT").with
-                }*/
+               docker.build("${JOB_NAME}:${env.BUILD_ID}")
 
             }
         }
         
-        stage('Build Image'){
-           /* agent {
-    // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
-         dockerfile {
-         filename 'Dockerfile'
-         dir '.'
-            //label 'my-defined-label'
-            //additionalBuildArgs  '--build-arg version=1.0.2'
-            //args '-p 9000:9000 -t snapshot'
-    }
-}*/
+        stage('Perform Test'){
+
             steps{
                 script{
-                    def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
+                    sh 'echo ojsdoa' 
                 }
                 
             }
