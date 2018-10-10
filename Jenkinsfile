@@ -95,6 +95,7 @@ def buildInfo = rtDocker.push "digitaldemo-docker-release-images.jfrog.io/sparkt
 //Publish the build-info to Artifactory:
 server.publishBuildInfo buildInfo
 
+
 }
 }
 }
