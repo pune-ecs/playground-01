@@ -32,8 +32,23 @@ pipeline {
         stage('Perform Test'){
             steps{
                 script{
-                    sh 'echo ojsdoa' 
-                }
+                   docker.image("digitaldemo-docker-snapshot-images.jfrog.io/${JOB_NAME}:SNAPSHOT").run('-i -t -p 9000:9000 --name snapshot')
+                      try{
+
+                        echo 'Testing Endpoint'
+
+                         sleep(time:10,unit:"SECONDS")
+                         def get = new URL("http://localhost:9000").openConnection();
+                         def getRC = get.getResponseCode();
+                          println(getRC);
+                          if(getRC.equals(200)) {
+                                 println("APPLICATION DEPLOYED SUCCESSFULLY");
+                          }
+                      }catch(Exception ex){
+                         println("Catching the exception");
+                          println(get.getInputStream().getText());
+                        
+                      }
    
             }
       
