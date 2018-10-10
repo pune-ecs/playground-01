@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springframework</groupId>
-    <artifactId>java-tomcat-maven-example</artifactId>
+    <groupId>org.ecsdigital</groupId>
+    <artifactId>hello-world</artifactId>
     <packaging>war</packaging>
     <version>1.9-SNAPSHOT</version>
 
@@ -16,9 +16,9 @@
         <tag>HEAD</tag>
     </scm>
     <build>
-	<finalName>java-tomcat-maven-example</finalName>
+	<finalName>hello-world</finalName>
         <plugins>
-            <plugin>
+            <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.1</version>
@@ -38,7 +38,7 @@
                     </execution>
 
                 </executions>
-            </plugin>
+            </plugin-->
 	     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
