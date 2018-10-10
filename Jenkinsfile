@@ -19,7 +19,7 @@ pipeline {
 	stage('Deploy & Test'){
 		agent {
 		docker {
-		   args "-p 9000:9000 --name 'snapshot' --network='host'"
+		   args "-p 9000:9000 -i -t --name 'snapshot' --network='host'"
 		   image "${JOB_NAME}:${env.BUILD_ID}"
 		}
 		}
@@ -30,7 +30,7 @@ pipeline {
 /*	stage('Deploy & Test'){
 	   agent {
                 docker {
-			args "-p 9999:9999 -t ${JOB_NAME}:${env.BUILD_ID}" 
+			args "-p 9999:9999 -i -t ${JOB_NAME}:${env.BUILD_ID}" 
 			image "${JOB_NAME}:${env.BUILD_ID}" 
 			//label "${JOB_NAME}:${env.BUILD_ID}"
 		}
