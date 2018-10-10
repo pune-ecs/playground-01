@@ -19,12 +19,29 @@ pipeline {
 	stage('Deploy & Test'){
 		agent {
 		docker {
-		   args "-p 9000:9000 -i -t --name 'snapshot' --network='host'"
+		   args "-p 9000:9000  --name 'snapshot' --network='host'"
 		   image "${JOB_NAME}:${env.BUILD_ID}"
 		}
 		}
 		steps{
-		   sh 'echo "Abhaya"'
+		   script{
+			   try{
+
+   echo 'Testing Endpoint'
+
+   sleep(time:10,unit:"SECONDS")
+   def get = new URL("http://localhost:9000").openConnection();
+   def getRC = get.getResponseCode();
+   println(getRC);
+   if(getRC.equals(200)) {
+     println(get.getInputStream().getText());
+   }
+   }finally{
+    // dockerCmd 'rm -f snapshot'
+    echo 'bla bla'
+   }
+		   }
+		   //sh 'echo "Abhaya"'
 		}
 	}
 /*	stage('Deploy & Test'){
