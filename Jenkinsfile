@@ -21,8 +21,11 @@ pipeline {
             }
         }
 	  stage('Wait for Approval'){
-		input 'Release project for Deployment?'
-	  }
+		input {
+  message 'Release project for Deployment?'
+}
+  
+	}
 	 stage('Release') {
 	     withMaven(maven: 'Maven 3') {
           //releasedVersion = getReleasedVersion()
