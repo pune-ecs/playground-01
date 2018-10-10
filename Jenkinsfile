@@ -27,6 +27,8 @@ pipeline {
   
 	}
 	 stage('Release') {
+		steps{
+		script{
 	     withMaven(maven: 'Maven 3') {
           //releasedVersion = getReleasedVersion()
           withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
@@ -35,7 +37,7 @@ pipeline {
           }
           //docker "build --tag digitaldemo-docker-release-images.jfrog.io/sparktodo-${JOB_NAME}:${releasedVersion} ."
       }
-  }
+  }}}
 /*	stage('Deploy & Test'){
 		agent {
 		docker {
