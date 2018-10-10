@@ -4,6 +4,11 @@ pipeline {
         maven 'Maven 3' 
         jdk 'jdk8' 
     }
+    parameters {
+        booleanParam(name: "RELEASE",
+                description: "Build a release from current commit.",
+                defaultValue: false)
+    }
     stages {
         stage ('Initialize') {
             steps {
