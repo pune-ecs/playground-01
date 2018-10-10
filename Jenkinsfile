@@ -50,8 +50,16 @@ pipeline {
         }
          stage('Release') {
         
-
-                steps{
+                when {
+                expression { params.RELEASE }
+            }
+            steps {
+                ansiColor("xterm") {
+                    sh "mvn -B release:prepare"
+                    sh "mvn -B release:perform"
+                }
+            }
+               /* steps{
 
                 script{
              withMaven(maven: 'Maven 3') {
@@ -62,7 +70,8 @@ pipeline {
           }
           //docker "build --tag digitaldemo-docker-release-images.jfrog.io/sparktodo-${JOB_NAME}:${releasedVersion} ."
      // }
-  }}}
+  }}*/
+  }
 
     }
 }
