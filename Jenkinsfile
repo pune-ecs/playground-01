@@ -1,7 +1,8 @@
 pipeline { 
-    agent {
+    agent any
+/* {
  	 label 'docker'
-	} 
+	} */
     tools {
         maven 'Maven 3'
     }
