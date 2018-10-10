@@ -23,7 +23,7 @@ pipeline {
             steps {
                sh 'mvn clean package'
                 script{
-                  def snap_image =  docker.build("${JOB_NAME}:SNAPSHOT")
+                  def snap_image =  docker.build("digitaldemo-docker-snapshot-images.jfrog.io/${JOB_NAME}:SNAPSHOT")
                 }
 
             }
@@ -49,7 +49,7 @@ pipeline {
              }
                 script{
                     releasedVersion = getReleasedVersion()
-                    def release_image =  docker.build("${JOB_NAME}:${releasedVersion}")
+                    def release_image =  docker.build("digitaldemo-docker-release-images.jfrog.io/${JOB_NAME}:${releasedVersion}")
                 }
             }
           }
