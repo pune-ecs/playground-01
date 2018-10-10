@@ -12,9 +12,10 @@ pipeline {
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
 		script{
-			docker.withServer('tcp://127.0.0.1:2375'){
-			docker.build("my-image:${env.BUILD_ID}")
-			}
+			docker.build "my-image:${env.BUILD_ID}"
+//			docker.withServer('tcp://127.0.0.1:2375'){
+//			docker.build("my-image:${env.BUILD_ID}")
+//			}
 		}
 		
             }
