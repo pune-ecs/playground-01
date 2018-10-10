@@ -13,7 +13,7 @@ pipeline {
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
 		script{
-			docker.withServer('tcp://127.0.0.1:2375'){
+			docker.withServer('tcp://34.241.144.120:2375'){
 			def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
 			}
 		}
