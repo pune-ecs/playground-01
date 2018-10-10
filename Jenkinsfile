@@ -38,10 +38,10 @@ pipeline {
    }
    }finally{
     // dockerCmd 'rm -f snapshot'
-    echo 'bla bla'
+    	 println(get.getResponseCode());
    }
 		   }
-		   //sh 'echo "Abhaya"'
+		   sh 'curl -v http://localhost:9000'
 		}
 	}
 /*	stage('Deploy & Test'){
