@@ -34,7 +34,8 @@ pipeline {
                 script{
                   app = docker.image("digitaldemo-docker-snapshot-images.jfrog.io/${JOB_NAME}:SNAPSHOT").withRun('-p 9000:9000 --name snapshot'){
 			   sh 'sleep 10'
-			   sh 'STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" http://localhost:9000) | "sleep 5" | [[ $STATUSCODE -ne "200" ]] && echo "TEST FAILED" || echo "TEST PASSED"'
+			   sh 'curl http://localhost:9000 || exit 1'
+			   //sh 'STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" http://localhost:9000) | "sleep 5" | [[ $STATUSCODE -ne "200" ]] && echo "TEST FAILED" || echo "TEST PASSED"'
 			   //sh '[[ $STATUSCODE -ne 200 ]] && exit 0 ||  echo "TEST PASSED"'
 						}
 				}	
