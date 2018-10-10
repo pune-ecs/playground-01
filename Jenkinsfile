@@ -18,18 +18,28 @@ pipeline {
             steps {
                echo 'This is a minimal pipeline.'
                sh 'mvn clean package'
-               docker {
+               /*docker {
                   args '-p 9000:9000 --name snapshot'
                    image '${JOB_NAME}:SNAPSHOT'
-                }
-                //app = docker.build("${JOB}")
+                }*/
+               /* script{
+                    app = docker.build("${JOB_NAME}:SNAPSHOT").with
+                }*/
 
             }
         }
-        stage('Approval'){
-             input {
-                  message 'Release project for Deployment?'
-        }
+        
+        stage('Build'){
+            agent {
+    // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
+         dockerfile {
+         filename 'Dockerfile'
+         dir '.'
+            //label 'my-defined-label'
+            //additionalBuildArgs  '--build-arg version=1.0.2'
+            args '-p 9000:9000 -t snapshot'
+    }
+}
         
         }
          stage('Release') {
