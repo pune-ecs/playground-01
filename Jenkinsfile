@@ -17,9 +17,14 @@ pipeline {
             }
         }
 	stage('Deploy & Test'){
+		agent {
 		docker {
 		   args "-p 9000:9000 --name 'snapshot' --network='host'"
 		   image "${JOB_NAME}:${env.BUILD_ID}"
+		}
+		}
+		steps{
+		   sh 'echo "Abhaya"'
 		}
 	}
 /*	stage('Deploy & Test'){
