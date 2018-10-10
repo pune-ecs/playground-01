@@ -37,7 +37,7 @@ pipeline {
          dir '.'
             //label 'my-defined-label'
             //additionalBuildArgs  '--build-arg version=1.0.2'
-            args '-p 9000:9000 -t snapshot'
+            //args '-p 9000:9000 -t snapshot'
     }
 }
             steps{
