@@ -33,15 +33,9 @@ pipeline {
             steps{
                 script{
                    docker.image("digitaldemo-docker-snapshot-images.jfrog.io/${JOB_NAME}:SNAPSHOT").run('-i -t -p 9000:9000 --name snapshot'){
-					
-						wget --server-response --spider localhost:9000
-						if [ 0 -eq 0 ]
-						then
-							echo 'UP'
-						else
-							echo 'DOWN'
-						fi
-					}
+						STATUSCODE=$(curl --silent --output /dev/stderr --write-out "%{http_code}" http://localhost:9000)
+						[[ $STATUSCODE -ne 200 ]] && [[ echo 'TEST Failed' || exit 0]] || [[ echo 'TEST PASSED']]
+						}
 				}	
    
             }
