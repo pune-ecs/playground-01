@@ -8,11 +8,14 @@ pipeline {
     }
     stages {
         stage('Build') {
+	   
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
 		script{
+			docker.withServer('tcp://localhost:2375'){
 			def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
+			}
 		}
 		
             }
