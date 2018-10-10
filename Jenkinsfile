@@ -30,7 +30,7 @@ pipeline {
         }
         
         stage('Build Image'){
-            agent {
+           /* agent {
     // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
          dockerfile {
          filename 'Dockerfile'
@@ -39,9 +39,12 @@ pipeline {
             //additionalBuildArgs  '--build-arg version=1.0.2'
             //args '-p 9000:9000 -t snapshot'
     }
-}
+}*/
             steps{
-                echo 'nnnns'
+                script{
+                    def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}", "-t snapshot")
+                }
+                
             }
         
         }
