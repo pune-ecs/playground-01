@@ -20,10 +20,10 @@ pipeline {
 		
             }
         }
-	  stage('Wait for Approval'){
+	  //stage('Wait for Approval'){
 		input {
   message 'Release project for Deployment?'
-}
+//}
   
 	}
 	 stage('Release') {
