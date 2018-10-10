@@ -29,7 +29,7 @@ pipeline {
             }
         }
         
-        stage('Build'){
+        stage('Build Image'){
             agent {
     // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
          dockerfile {
@@ -40,6 +40,9 @@ pipeline {
             args '-p 9000:9000 -t snapshot'
     }
 }
+            steps{
+                echo 'nnnns'
+            }
         
         }
          stage('Release') {
