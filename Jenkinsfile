@@ -21,11 +21,11 @@ pipeline {
             }
         }
 	 stage('Release') {
-		steps{
-		 input {
-  message 'Release project for Deployment?'
-
+             input {
+		  message 'Release project for Deployment?'
         }
+
+		steps{
 
 		script{
 	     withMaven(maven: 'Maven 3') {
