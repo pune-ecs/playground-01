@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+   agent any
    tools { 
         maven 'Maven 3' 
         jdk 'jdk8' 
@@ -21,42 +21,38 @@ pipeline {
 
         stage('Build') {
             steps {
-               echo 'This is a minimal pipeline.'
                sh 'mvn clean package'
                 script{
-                  def snap_image =  docker.build("${JOB_NAME}:${env.BUILD_ID}")
+                  def snap_image =  docker.build("${JOB_NAME}:SNAPSHOT")
                 }
 
             }
         }
         
         stage('Perform Test'){
-
             steps{
                 script{
                     sh 'echo ojsdoa' 
                 }
-                
+   
             }
-        
+      
         }
          stage('Release') {
-        
-                when {
+           when {
                 expression { params.RELEASE }
             }
             steps {
-                //script{
-                   // withMaven(maven: 'Maven 3'){
-                        withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]){
-                             sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
-                             sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
-                        }
-                 //       }
-                //}
-                
-            }
+                  withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]){
+                     sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
+                     sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
              }
+                script{
+                    releasedVersion = getReleasedVersion()
+                    def release_image =  docker.build("${JOB_NAME}:${releasedVersion}")
+                }
+            }
+          }
         stage('Push image and Artifact Releases to Artifactory') {
             steps{
                 script{
@@ -75,7 +71,7 @@ pipeline {
 
                     // Push a docker image to Artifactory (here we're pushing hello-world:latest). The push method also expects
                     // Artifactory repository name (<target-artifactory-repository>).
-                    def buildInfo = rtDocker.push "digitaldemo-docker-release-images.jfrog.io/sparktodo-${JOB_NAME}:${releasedVersion}", 'docker-release-images'
+                    def buildInfo = rtDocker.push "digitaldemo-docker-release-images.jfrog.io/${JOB_NAME}:${releasedVersion}", 'docker-release-images'
 
                     //Publish the build-info to Artifactory:
                     server.publishBuildInfo buildInfo
@@ -84,3 +80,7 @@ pipeline {
         }
     }
 }
+def getReleasedVersion() {
+    return (readFile('pom.xml') =~ '<version>(.+)-SNAPSHOT</version>')[0][1]
+}
+
