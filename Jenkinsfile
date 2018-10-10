@@ -42,7 +42,7 @@ pipeline {
 }*/
             steps{
                 script{
-                    def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}", "-t snapshot")
+                    def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
                 }
                 
             }
