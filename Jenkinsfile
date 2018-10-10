@@ -11,16 +11,29 @@ pipeline {
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
-		script{
+/*		script{
 			docker.build "my-image:${env.BUILD_ID}"
 //			docker.withServer('tcp://127.0.0.1:2375'){
 //			docker.build("my-image:${env.BUILD_ID}")
 //			}
-		}
+		}*/
 		
             }
         }
-	stage('Deploy & Test'){
+	  stage('Wait for Approval'){
+		input 'Release project for Deployment?'
+	  }
+	 stage('Release') {
+	     withMaven(maven: 'Maven 3') {
+          //releasedVersion = getReleasedVersion()
+          withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
+              sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
+              sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
+          }
+          //docker "build --tag digitaldemo-docker-release-images.jfrog.io/sparktodo-${JOB_NAME}:${releasedVersion} ."
+      }
+  }
+/*	stage('Deploy & Test'){
 		agent {
 		docker {
 		   args "-p 9000:9000  --name 'snapshot' --network='host'"
@@ -48,7 +61,7 @@ pipeline {
 		   sh 'curl -v http://localhost:9000'
 		}
 	}
-/*	stage('Deploy & Test'){
+	stage('Deploy & Test'){
 	   agent {
                 docker {
 			args "-p 9999:9999 -i -t ${JOB_NAME}:${env.BUILD_ID}" 
