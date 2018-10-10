@@ -17,7 +17,7 @@ pipeline {
 		script{
 			docker.withServer('tcp://34.241.144.120:2375'){
 	//			def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
-			def snapshotImage = docker.build("my-image:${env.BUILD_ID}")
+			docker.build("my-image:${env.BUILD_ID}")
 			}
 		}
 		
