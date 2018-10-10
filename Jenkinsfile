@@ -58,6 +58,9 @@ pipeline {
             }
           }
         stage('Push image and Artifact Releases to Artifactory') {
+	     when {
+                expression { params.RELEASE }
+            }
             steps{
                 script{
                      // Create an Artifactory server instance:
@@ -83,6 +86,9 @@ pipeline {
             }
         }
        stage('Deploy'){
+	   when {
+                expression { params.RELEASE }
+            }
           steps{
              script{
                 docker.image("digitaldemo-docker-release-images.jfrog.io/${JOB_NAME}:${releasedVersion}").run('-i -t -p 9000:9000 --name production')
