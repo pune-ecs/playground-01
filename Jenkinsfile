@@ -8,15 +8,11 @@ pipeline {
     }
     stages {
         stage('Build') {
-	   agent{
-		label 'master'
-	   }
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
 		script{
-			docker.withServer('tcp://34.241.144.120:2375'){
-	//			def snapshotImage = docker.build("${JOB_NAME}:${env.BUILD_ID}")
+			docker.withServer('tcp://127.0.0.1:2375'){
 			docker.build("my-image:${env.BUILD_ID}")
 			}
 		}
