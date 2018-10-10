@@ -75,15 +75,12 @@ pipeline {
                 script{
                      // Create an Artifactory server instance:
                      def server = Artifactory.server('abhaya-docker-artifactory')
-                     def uploadSpec = ""
-                     "{
-                     "files": [{
-                      "pattern": "**/*.jar",
-                      "target": "ext-release-local/"
-                     }]
-                    }
-                    ""
-                    "
+                     def uploadSpec = """{
+                      "files": [{
+                          "pattern": "**/*.jar",
+                           "target": "ext-release-local/"
+                        }]
+                       }"""
                     server.upload(uploadSpec)
 
                     // Create an Artifactory Docker instance. The instance stores the Artifactory credentials and the Docker daemon host address:
