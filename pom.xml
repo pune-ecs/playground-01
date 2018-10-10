@@ -5,7 +5,7 @@
     <groupId>org.ecsdigital</groupId>
     <artifactId>hello-world</artifactId>
     <packaging>war</packaging>
-    <version>1.12-SNAPSHOT</version>
+    <version>1.19-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -77,8 +77,8 @@
             </plugin>
         </plugins>
     </build>
-   
-    
+
+
     <dependencies>
 		<dependency>
 			<groupId>joda-time</groupId>
