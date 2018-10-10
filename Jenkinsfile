@@ -61,10 +61,11 @@ pipeline {
             steps {
                 script{
                     withMaven(maven: 'Maven 3'){
-                        withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')])
+                        withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]){
                              sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
                              sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
-                    }
+                        }
+                        }
                 }
                 
             }
