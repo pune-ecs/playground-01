@@ -8,7 +8,9 @@ pipeline {
     }
     stages {
         stage('Build') {
-	   
+	   agent{
+		label 'master'
+	   }
             steps { 
                echo 'This is a minimal pipeline.' 
 	       sh 'mvn clean package'
