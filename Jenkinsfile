@@ -18,13 +18,22 @@ pipeline {
             steps {
                echo 'This is a minimal pipeline.'
                sh 'mvn clean package'
+               docker {
+                  args '-p 9000:9000 --name snapshot'
+                   image '${JOB_NAME}:SNAPSHOT'
+                }
+                //app = docker.build("${JOB}")
 
             }
         }
-         stage('Release') {
+        stage('Approval'){
              input {
                   message 'Release project for Deployment?'
         }
+        
+        }
+         stage('Release') {
+        
 
                 steps{
 
@@ -36,7 +45,7 @@ pipeline {
               sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
           }
           //docker "build --tag digitaldemo-docker-release-images.jfrog.io/sparktodo-${JOB_NAME}:${releasedVersion} ."
-      }
+     // }
   }}}
 
     }
