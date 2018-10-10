@@ -78,6 +78,13 @@ pipeline {
                 }
             }
         }
+       stage('Deploy'){
+          steps{
+             script{
+                docker.image("digitaldemo-docker-release-images.jfrog.io/${JOB_NAME}:${releasedVersion}").run('-i -t -p 9000:9000 --name production')
+             }
+          }
+       }
     }
 }
 def getReleasedVersion() {
