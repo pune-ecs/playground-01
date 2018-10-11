@@ -92,10 +92,9 @@ pipeline {
                 expression { params.RELEASE }
             }
           steps{
-	     input {
- 		 message 'Proceed with Deployment ?'
-		}
+
              script{
+	     	input 'Proceed with Deployment ?'
                 docker.image("digitaldemo-docker-release-images.jfrog.io/${JOB_NAME}:${releasedVersion}").run('-i -t -p 9000:9000 --name production')
              }
           }
