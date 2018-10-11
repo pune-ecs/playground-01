@@ -111,12 +111,13 @@ This stage consists of following steps
   }
  }
  steps {
-  withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
-   sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
-   sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
-  }
-  script {
-   releasedVersion = getReleasedVersion()
+   script {
+    releasedVersion = getReleasedVersion()
+      withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
+        sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
+        sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
+      }
+
    def release_image = docker.build("digitaldemo-docker-release-images.jfrog.io/${JOB_NAME}:${releasedVersion}")
   }
  }
