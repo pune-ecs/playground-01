@@ -5,7 +5,7 @@
     <groupId>org.ecsdigital</groupId>
     <artifactId>hello-world</artifactId>
     <packaging>war</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -13,7 +13,7 @@
     </properties>
     <scm>
         <developerConnection>scm:git:https://github.com/pune-ecs/playground-01.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>hello-world-1.1</tag>
     </scm>
     <build>
 	<finalName>hello-world</finalName>
