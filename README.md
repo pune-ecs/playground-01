@@ -61,7 +61,7 @@ Next it will take to you to job configuration page, you need to configure your j
   2. SCM: Select Git
        1. Repositories URL: <Paste URL>
        2. Credentials: Select your SCM credentials
-       3. Additional Behavious: Checkout to specific branch
+       3. Additional Behaviour: Checkout to specific branch
           1. Type 'master' in it.
        4. Make sure you have your Script Path as Jenkinsfile
        5. Save all the changes
