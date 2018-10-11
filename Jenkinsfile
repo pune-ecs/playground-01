@@ -55,6 +55,7 @@ pipeline {
      sh "git config user.email ecsdigitalpune@gmail.com && git config user.name Jenkins"
      sh "mvn release:prepare release:perform -Dusername=${username} -Dpassword=${password}"
     }
+
      def release_image = docker.build("digitaldemo-docker-release-images.jfrog.io/${JOB_NAME}:${releasedVersion}")
     }
    }
@@ -111,5 +112,5 @@ post {
 }
 }
 def getReleasedVersion() {
- return (readFile('pom.xml') = ~'<version>(.+)-SNAPSHOT</version>')[0][1]
+ return (readFile('pom.xml') =~ '<version>(.+)-SNAPSHOT</version>')[0][1]
 }
