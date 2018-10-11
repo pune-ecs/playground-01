@@ -43,10 +43,13 @@ You can skip this section if you are using your own Jenkins Dashboard.
 ![](images/jenkins-login.png)
 ### Configure Jenkins
 * Add your Github Credentials
-    Manage Jenkins > Configure >
+    1. Credentials > Add 'github' Credentials
 * Add your JFrog Artifactory credentials
+    2. Manage Jenkins > Configure > Artifactory
 * Add Docker Server
+    3. Manage Jenkins > Configure > Docker
 * Configure Maven
+    4. Manage Jenkins > Global Configuration Tools > Maven
 
 ### Creating the Pipeline
 
